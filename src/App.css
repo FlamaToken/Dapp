@@ -1,0 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.logo{
+  animation: flama 2s ease-in-out forwards;
+  opacity: 0;
+  transform: scale(0.9);
+  width: 240px;
+}
+
+@keyframes flama{
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
