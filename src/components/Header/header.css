@@ -1,0 +1,44 @@
+header{
+    background: rgba(255,255,255,0.8);
+    height: 56px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+header .container{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.main-navigation{
+    display: flex;
+}
+
+.main-navigation ul{
+    align-items: center;
+    display: flex;
+}
+
+.main-navigation ul li{
+    padding: 0 24px;
+}
+
+.main-navigation ul li a{
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.logo{
+    width: 100px;
+}
+
+@media all and (max-width: 600px){
+    .main-navigation{
+        display: none;
+    }
+}

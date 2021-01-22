@@ -1,0 +1,41 @@
+footer {
+  background-color: #fff;
+  width: 100%;
+}
+
+footer .container {
+    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+.social-links {
+  display: flex;
+}
+
+.social-links li {
+  padding: 0 16px;
+}
+
+.social-links li:first-of-type {
+  padding-left: 0;
+}
+
+.social-links li:last-of-type {
+  padding-right: 0;
+}
+
+.social-links svg {
+  width: 21px;
+}
+
+.ext{
+    background: #ea4c89;
+    border-radius: 4px;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px;
+}
