@@ -14,11 +14,23 @@ class Conversor extends Component {
           </div>
           <div className="input-wr">
             <label for="sendItem">Sent</label>
-            <input id="sendItem" type="number" placeholder="0.0" />
+            <div className="input-wr-inner">
+              <input id="sendItem" type="number" placeholder="0.0" />
+              <div className="coin-name">
+                <img src="/assets/balance/fma.png" alt="FMA" />
+                <small>FMA</small>
+              </div>
+            </div>
           </div>
           <div className="input-wr">
             <label for="receivedItem">Received</label>
-            <input id="receivedItem" type="number" placeholder="0.0" />
+            <div className="input-wr-inner">
+              <input id="receivedItem" type="number" placeholder="0.0" />
+              <div className="coin-name">
+                <img src="/assets/balance/fss.png" alt="FSS" />
+                <small>FSS</small>
+              </div>
+            </div>
           </div>
           <button type="submit" className="conv-btn">
             Stake
