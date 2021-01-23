@@ -17,7 +17,7 @@ class Conversor extends Component {
             <div className="input-wr-inner">
               <input id="sendItem" type="number" placeholder="0.0" />
               <div className="coin-name">
-                <img src="/assets/balance/fma.png" alt="FMA" />
+                <img src="/assets/balance/fma-logo.png" alt="FMA" />
                 <small>FMA</small>
               </div>
             </div>
@@ -27,7 +27,7 @@ class Conversor extends Component {
             <div className="input-wr-inner">
               <input id="receivedItem" type="number" placeholder="0.0" />
               <div className="coin-name">
-                <img src="/assets/balance/fss.png" alt="FSS" />
+                <img src="/assets/balance/fss-logo.png" alt="FSS" />
                 <small>FSS</small>
               </div>
             </div>
@@ -46,7 +46,7 @@ class Conversor extends Component {
         <small className="note-instructions">
           1% of FMA transaction goes to Flama Staking Shares (FSS).
           <br />
-          Stake FMA to get FSS. Unstake FSS to get FMA/FLAPs.
+          Stake FMA to get FSS. Unstake FSS to get FMA/FLAP.
         </small>
       </div>
     );

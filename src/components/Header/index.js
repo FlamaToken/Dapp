@@ -50,7 +50,7 @@ class Header extends Component {
             <li>
               <img src="/assets/balance/flap-logo.png" alt="FLAP" />
               <b>
-                400 <span>FMA</span>
+                400 <span>FLAP</span>
               </b>
             </li>
       
