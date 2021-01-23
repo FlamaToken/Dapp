@@ -4,7 +4,7 @@ footer {
 }
 
 footer .container {
-    align-items: center;
+  align-items: center;
   display: flex;
   justify-content: space-between;
   padding-bottom: 16px;
@@ -16,7 +16,7 @@ footer .container {
 }
 
 .social-links li {
-  padding: 0 16px;
+  padding: 0 12px;
 }
 
 .social-links li:first-of-type {
@@ -28,14 +28,25 @@ footer .container {
 }
 
 .social-links svg {
-  width: 21px;
+  width: 18px;
 }
 
-.ext{
-    background: #ea4c89;
-    border-radius: 4px;
-    color: #FFF;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 8px;
+.ext {
+  align-items: center;
+  background: #ea4c89;
+  border-radius: 4px;
+  color: #fff;
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px;
+}
+
+.ext svg {
+  margin-left: 8px;
+  width: 16px;
+}
+
+.ext svg path {
+  fill: #fff;
 }
