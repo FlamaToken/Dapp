@@ -32,25 +32,33 @@ class Header extends Component {
           </div>
 
           <ul className="balance-wr">
-            <small>Total balance:</small>
+            <small>Balances:</small>
             <li>
               <img src="/assets/balance/eth.png" alt="Ether" />
               <b>
-                2.4 <span>ETH</span>
+                0 <span>ETH</span>
               </b>
             </li>
 
             <li>
-              <img src="/assets/balance/fma.png" alt="FMA" />
+              <img src="/assets/balance/fma-logo.png" alt="FMA" />
               <b>
-                520 <span>FMA</span>
+                0 <span>FMA</span>
               </b>
             </li>
+      
+            <li>
+              <img src="/assets/balance/flap-logo.png" alt="FLAP" />
+              <b>
+                0 <span>FLAP</span>
+              </b>
+            </li>
+      
 
             <li>
-              <img src="/assets/balance/fss.png" alt="FSS" />
+              <img src="/assets/balance/fss-logo.png" alt="FSS" />
               <b>
-                330 <span>FSS</span>
+                0 <span>FSS</span>
               </b>
             </li>
           </ul>

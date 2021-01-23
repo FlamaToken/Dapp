@@ -31,7 +31,7 @@ function Conversor() {
                     <div className="input-wr-inner">
                         <input id="sendItem" type="number" placeholder="0.0"/>
                         <div className="coin-name">
-                            <img src="/assets/balance/fma.png" alt="FMA"/>
+                            <img src="/assets/balance/fma-logo.png" alt="FMA"/>
                             <small>FMA</small>
                         </div>
                     </div>
@@ -41,7 +41,7 @@ function Conversor() {
                     <div className="input-wr-inner">
                         <input id="receivedItem" type="number" placeholder="0.0"/>
                         <div className="coin-name">
-                            <img src="/assets/balance/fss.png" alt="FSS"/>
+                            <img src="/assets/balance/fss-logo.png" alt="FSS"/>
                             <small>FSS</small>
                         </div>
                     </div>
@@ -53,7 +53,6 @@ function Conversor() {
                 <div className="wallet-status">
                     <div className="status"></div>
                     <p>Wallet disconnected</p>
-                    {/*<a href="#"  {web3Loading? '':  onClick = {connectWallet()}}>Connect now</a>*/}
                     <a href="#" onClick={connectWallet}>Connect now</a>
 
                 </div>
