@@ -26,21 +26,19 @@ header .container {
 .main-navigation ul {
   align-items: center;
   display: flex;
-  margin-left: 24px;
-  transform: translateY(2px);
+  margin-left: 32px;
   height: 100%;
 }
 
 .main-navigation ul li {
   align-items: center;
   display: flex;
-  padding: 0 16px;
   height: 100%;
   position: relative;
 }
 
 .main-navigation ul li:after {
-  background: red;
+  background: #ea4c4c;
   bottom: 0;
   content: "";
   height: 2px;
@@ -54,13 +52,25 @@ header .container {
   width: 100%;
 }
 
-.main-navigation ul li a {
+.main-navigation ul li:hover a{
   color: #000;
+}
+
+.main-navigation ul li.active a{
+  color: #ea4c4c;
+}
+
+.main-navigation ul li a {
+  color: rgba(0,0,0,0.55);
   font-size: 14px;
   font-weight: 600;
+  padding: 0 16px;
+  transition: 0.3s ease-in-out;
+  width: 100%;
 }
 
 .logo {
+  transform: translateY(-2px);
   width: 88px;
 }
 
