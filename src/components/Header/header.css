@@ -64,17 +64,25 @@ header .container {
 }
 
 .balance-wr li img {
-  width: 24px;
-  padding-right: 4px;
+  width: 21px;
+  margin-right: 4px;
 }
 
 @media all and (max-width: 600px) {
   .balance-wr small {
     display: none;
   }
+}
 
+
+
+@media all and (max-width: 500px) {
   .balance-wr li b {
     display: flex;
     flex-flow: column;
+  }
+
+  .balance-wr li img{
+    margin-right: 8px;
   }
 }
