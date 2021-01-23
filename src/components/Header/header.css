@@ -14,24 +14,49 @@ header .container {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 
-.main-navigation {
+.site-nav, .main-navigation {
+  align-items: center;
   display: flex;
+  height: 100%;
 }
 
 .main-navigation ul {
   align-items: center;
   display: flex;
+  margin-left: 24px;
+  transform: translateY(2px);
+  height: 100%;
 }
 
 .main-navigation ul li {
-  padding: 0 24px;
+  align-items: center;
+  display: flex;
+  padding: 0 16px;
+  height: 100%;
+  position: relative;
+}
+
+.main-navigation ul li:after {
+  background: red;
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transition: 0.35s ease-in-out;
+  width: 0%;
+}
+
+.main-navigation ul li.active:after {
+  width: 100%;
 }
 
 .main-navigation ul li a {
   color: #000;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -68,15 +93,19 @@ header .container {
   margin-right: 4px;
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 860px) {
   .balance-wr small {
     display: none;
   }
 }
 
+@media all and (max-width: 720px) {
+  .main-navigation{
+    display: none;
+  }
+}
 
-
-@media all and (max-width: 500px) {
+@media all and (max-width: 440px) {
   .balance-wr li b {
     display: flex;
     flex-flow: column;
