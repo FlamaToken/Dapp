@@ -41,14 +41,22 @@ class Header extends Component {
             </li>
 
             <li>
-              <img src="/assets/balance/fma.png" alt="FMA" />
+              <img src="/assets/balance/fma-logo.png" alt="FMA" />
               <b>
                 520 <span>FMA</span>
               </b>
             </li>
+      
+            <li>
+              <img src="/assets/balance/flap-logo.png" alt="FLAP" />
+              <b>
+                400 <span>FMA</span>
+              </b>
+            </li>
+      
 
             <li>
-              <img src="/assets/balance/fss.png" alt="FSS" />
+              <img src="/assets/balance/fss-logo.png" alt="FSS" />
               <b>
                 330 <span>FSS</span>
               </b>
