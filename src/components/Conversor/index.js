@@ -15,7 +15,7 @@ function Conversor(props) {
           return  <div className="wallet-status">
                 <div className="status"></div>
                 <p>Wallet Connected</p>
-                <a href="#">Disconnect now</a>
+                
             </div>
         }
     }

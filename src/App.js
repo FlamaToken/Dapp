@@ -13,6 +13,7 @@ function FlamaApp() {
     const [eth, setEth] = useState();
     const [flm, setFlm] = useState();
     const [flap, setFlap] = useState();
+    const [fss, setFss] = useState();
     const [connected, setConnected] = useState(false);
 
 
@@ -23,20 +24,29 @@ function FlamaApp() {
 
             web3.eth.getAccounts().then((result) => {
                     web3.eth.getBalance(result[0]).then(value => {
-                        var ether = web3.utils.fromWei(value, 'ether')
-                        setEth(ether)
+                        var ether = value;
+                        setEth(web3.utils.fromWei(ether, 'ether'))
                     })
 
                     var Flama = new web3.eth.Contract(Constants.ABIFLAMA, Constants.flamaAddress);
                     Flama.methods.balanceOf(result[0]).call().then(value => {
+                        var fma = value;
                         console.log('flm ', value)
-                        setFlm(value)
+                        setFlm(web3.utils.fromWei(fma, 'ether'))
                     });
 
                     var Flap = new web3.eth.Contract(Constants.ABIFLAPP, Constants.flappAddress);
                     Flap.methods.balanceOf(result[0]).call().then(value => {
+                        var flap = value;
                         console.log('flap  ', value)
-                        setFlap(value)
+                        setFlap(web3.utils.fromWei(flap, 'ether'))
+                    });
+
+                    var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
+                    Stake.methods.balanceOf(result[0]).call().then(value => {
+                        var fss = value;
+                        console.log('fss  ', value)
+                        setFss(web3.utils.fromWei(fss, 'ether'))
                     });
                 }
             )
@@ -45,7 +55,7 @@ function FlamaApp() {
 
     return (
         <div className="flama">
-            <Header eth={eth} flm={flm} flap={flap} connected={connected}/>
+            <Header eth={eth} flm={flm} flap={flap} fss={fss} connected={connected}/>
             <Conversor connectWallet={connectWallet} connected={connected}/>
             <Footer/>
         </div>
