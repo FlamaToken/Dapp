@@ -63,6 +63,9 @@ class Header extends Component {
                                 <li>
                                     <a href="#">Exchange</a>
                                 </li>
+                                <li>
+                                    <a href="#">Bridge</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
