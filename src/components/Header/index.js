@@ -16,13 +16,15 @@ class Header extends Component {
                     <li>
                         <img src="/assets/balance/fma-logo.png" alt="FMA"/>
                         <b>
-                            0 <span>FMA</span>
+                            {this.props.flm > 0 ? parseFloat(this.props.flm).toFixed(5) : 0}
+                             <span>FMA</span>
                         </b>
                     </li>
                     <li>
                         <img src="/assets/balance/flap-logo.png" alt="FLAP"/>
                         <b>
-                            0 <span>FLAP</span>
+                            {this.props.flap > 0 ? parseFloat(this.props.flap).toFixed(5) : 0}
+                            <span>FLAP</span>
                         </b>
                     </li>
                     <li>

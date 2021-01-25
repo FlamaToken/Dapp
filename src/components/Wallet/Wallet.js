@@ -47,7 +47,7 @@ export default function Wallet() {
             })
             web3 = new Web3(provider)
             setLoading(false)
-            
+
             return web3
         },
     }
