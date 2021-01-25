@@ -1,20 +1,23 @@
 import React, {Component, useState} from "react";
 
 import "./conversor.css";
-import Wallet from '../Wallet/Wallet.js';
 
-function Conversor() {
-    const {web3Loading, getWeb3} = Wallet()
-    const [myWeb3, setMyWeb3] = useState()
+function Conversor(props) {
 
-    async function connectWallet() {
-        await getWeb3().then((response) => {
-            setMyWeb3(response);
-            response.eth.getAccounts().then((result) => {
-                console.log(result[0])
-                }
-            )
-        });
+    const renderWalletStatus = () => {
+        if (!props.connected) {
+            return <div className="wallet-status">
+                <div className="status"></div>
+                <p>Wallet disconnected</p>
+                <a href="#" onClick={() => props.connectWallet()}>Connect now</a>
+            </div>
+        } else {
+          return  <div className="wallet-status">
+                <div className="status"></div>
+                <p>Wallet Connected</p>
+                <a href="#">Disconnect now</a>
+            </div>
+        }
     }
 
     return (
@@ -49,13 +52,7 @@ function Conversor() {
                 <button type="submit" className="conv-btn">
                     Stake
                 </button>
-
-                <div className="wallet-status">
-                    <div className="status"></div>
-                    <p>Wallet disconnected</p>
-                    <a href="#" onClick={connectWallet}>Connect now</a>
-
-                </div>
+                {renderWalletStatus()}
             </section>
 
             <small className="note-instructions">

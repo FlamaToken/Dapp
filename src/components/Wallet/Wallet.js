@@ -43,10 +43,11 @@ export default function Wallet() {
             provider.on('disconnect', e => console.error('WS Disconnect', e))
 
             provider.on('connect', (info) => {
-                console.log(info)
+                console.log('connected')
             })
             web3 = new Web3(provider)
             setLoading(false)
+            
             return web3
         },
     }
