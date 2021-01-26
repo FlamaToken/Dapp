@@ -103,7 +103,7 @@
   outline: none;
 }
 
-.conv-btn {
+.brid-btn {
   background: #ea4c4c;
   border: none;
   border-radius: 12px;
@@ -116,11 +116,11 @@
   width: 100%;
 }
 
-.conv-btn:hover {
+.brid-btn:hover {
   transform: scale(0.95);
 }
 
-.conv-btn:focus {
+.brid-btn:focus {
   outline: none;
 }
 

@@ -34,8 +34,8 @@ function Bridge(props) {
                     <div className="input-wr-inner">
                         <input id="sendItem" type="number" placeholder="0.0"/>
                         <div className="coin-name">
-                            <img src="/assets/balance/fma-logo.png" alt="FMA"/>
-                            <small>FMA</small>
+                            <img src="/assets/balance/flap-logo.png" alt="FMA"/>
+                            <small>FLAP</small>
                         </div>
                     </div>
                 </div>
