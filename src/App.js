@@ -56,7 +56,7 @@ function FlamaApp() {
 
     return (
         <div className="flama">
-            <Header eth={eth} flm={flm} flap={flap} fss={fss} connected={connected}/>
+            <Header eth={eth} flm={flm} flap={flap} fss={fss} connectWallet={connectWallet} connected={connected}/>
             <Conversor connectWallet={connectWallet} connected={connected}/>
             <Bridge connectWallet={connectWallet} connected={connected}/>
             <Footer/>

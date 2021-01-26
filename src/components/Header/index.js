@@ -4,7 +4,12 @@ import "./header.css";
 class Header extends Component {
     render() {
         const renderBalances = () => {
-            if (this.props.connected) {
+            if (!this.props.connected) {
+                return <div className="wallet-status">
+                    <div className="status"></div>
+                    <div type="submit" className="connect-btn" onClick={() => this.props.connectWallet()}>Connect Wallet</div>
+                </div>
+            } else if (this.props.connected) {
                 return <ul className="balance-wr">
                     <small>Balances:</small>
                     <li>
@@ -16,22 +21,19 @@ class Header extends Component {
                     <li>
                         <img src="/assets/balance/fma-logo.png" alt="FMA"/>
                         <b>
-                            {this.props.flm > 0 ? parseFloat(this.props.flm).toFixed(2) : 0}
-                             <span>FMA</span>
+                            {this.props.flm > 0 ? parseFloat(this.props.flm).toFixed(2) : 0} <span>FMA</span>
                         </b>
                     </li>
                     <li>
                         <img src="/assets/balance/flap-logo.png" alt="FLAP"/>
                         <b>
-                            {this.props.flap > 0 ? parseFloat(this.props.flap).toFixed(2) : 0}
-                            <span>FLAP</span>
+                            {this.props.flap > 0 ? parseFloat(this.props.flap).toFixed(2) : 0} <span>FLAP</span>
                         </b>
                     </li>
                     <li>
                         <img src="/assets/balance/fss-logo.png" alt="FSS"/>
                         <b>
-                            {this.props.fss > 0 ? parseFloat(this.props.fss).toFixed(2) : 0}
-                            <span>FSS</span>
+                            {this.props.fss > 0 ? parseFloat(this.props.fss).toFixed(2) : 0} <span>FSS</span>
                         </b>
                     </li>
                 </ul>

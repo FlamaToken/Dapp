@@ -74,6 +74,27 @@ header .container {
   width: 88px;
 }
 
+.connect-btn {
+  background: #ea4c4c;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 8px;
+  transition: 0.35s ease-in-out;
+  width: fit-content;
+}
+
+.connect-btn:hover {
+  transform: scale(0.95);
+}
+
+.connect-btn:focus {
+  outline: none;
+}
+
 .balance-wr {
   align-items: center;
   display: flex;
