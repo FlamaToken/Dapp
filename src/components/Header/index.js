@@ -7,9 +7,9 @@ class Header extends Component {
     render() {
         const renderBalances = () => {
             if (!this.props.connected) {
-                return <div className="wallet-status">
+                return <div className="wallet-status-main">
                     <div className="status"></div>
-                    <div type="submit" className="connect-btn" onClick={() => this.props.connectWallet()}>Connect Wallet</div>
+                    <button type="submit" className="connect-btn" onClick={() => this.props.connectWallet()}>Connect Wallet</button>
                 </div>
             } else if (this.props.connected) {
                 return <ul className="balance-wr">

@@ -37,7 +37,7 @@ header .container {
   position: relative;
 }
 
-.main-navigation ul li:after {
+.main-navigation ul li a:after {
   background: #ea4c4c;
   bottom: 0;
   content: "";
@@ -48,8 +48,8 @@ header .container {
   width: 0%;
 }
 
-.main-navigation ul li.active:after {
-  /*width: 100%;*/
+.main-navigation ul li a.active:after {
+  width: 100%;
 }
 
 .main-navigation ul li:hover a{
@@ -75,20 +75,22 @@ header .container {
 }
 
 .connect-btn {
+  align-items: center;
   background: #ea4c4c;
   border: none;
-  border-radius: 12px;
+  border-radius: 4px;
   color: #fff;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 16px 8px;
-  transition: 0.35s ease-in-out;
-  width: fit-content;
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px;
+  margin-left: 8px;
 }
 
-.connect-btn:hover {
-  transform: scale(0.95);
+.wallet-status-main{
+  align-items: center;
+  display: flex;
 }
 
 .connect-btn:focus {
