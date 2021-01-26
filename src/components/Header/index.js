@@ -60,13 +60,13 @@ class Header extends Component {
                                     <a href="#">Staking</a>
                                 </li>
                                 <li>
-                                    <a href="#">Lending</a>
+                                    <a href="https://github.com/FlamaToken/Lending" target="_blank" rel="noopener noreferrer">Lending</a>
                                 </li>
                                 <li>
-                                    <a href="#">Exchange</a>
+                                    <a href="https://uniswap.exchange/swap?outputCurrency=0x0f8794f66c7170c4f9163a8498371a747114f6c4" target="_blank" rel="noopener noreferrer">Exchange</a>
                                 </li>
                                 <li>
-                                    <a href="#">Bridge</a>
+                                    <a href="https://flappbridge.justliquidity.org/" target="_blank" rel="noopener noreferrer">Bridge</a>
                                 </li>
                             </ul>
                         </nav>
