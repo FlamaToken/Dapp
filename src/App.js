@@ -4,6 +4,7 @@ import Conversor from '../src/components/Conversor'
 import Bridge from '../src/components/Bridge'
 import Footer from '../src/components/Footer'
 import Wallet from "./components/Wallet/Wallet";
+import Main from "./components/Main/Main";
 import React, {useState} from "react";
 import * as Constants from "./constants/index"
 
@@ -57,8 +58,7 @@ function FlamaApp() {
     return (
         <div className="flama">
             <Header eth={eth} flm={flm} flap={flap} fss={fss} connectWallet={connectWallet} connected={connected}/>
-            <Conversor connectWallet={connectWallet} connected={connected}/>
-            <Bridge connectWallet={connectWallet} connected={connected}/>
+            <Main/>
             <Footer/>
         </div>
     );

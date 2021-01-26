@@ -49,14 +49,14 @@ header .container {
 }
 
 .main-navigation ul li.active:after {
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .main-navigation ul li:hover a{
   color: #000;
 }
 
-.main-navigation ul li.active a{
+.main-navigation ul li a.active{
   color: #ea4c4c;
 }
 
