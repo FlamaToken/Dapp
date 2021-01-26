@@ -1,6 +1,7 @@
 import "./App.css";
 import Header from '../src/components/Header'
 import Conversor from '../src/components/Conversor'
+import Bridge from '../src/components/Bridge'
 import Footer from '../src/components/Footer'
 import Wallet from "./components/Wallet/Wallet";
 import React, {useState} from "react";
@@ -57,6 +58,7 @@ function FlamaApp() {
         <div className="flama">
             <Header eth={eth} flm={flm} flap={flap} fss={fss} connected={connected}/>
             <Conversor connectWallet={connectWallet} connected={connected}/>
+            <Bridge connectWallet={connectWallet} connected={connected}/>
             <Footer/>
         </div>
     );
