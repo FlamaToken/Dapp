@@ -12,6 +12,7 @@ function Conversor(props) {
 
     const [allowanceFMA, setAllowanceFMA] = useState(null);
     const [sendValue, setSendValue] = useState(0);
+    const [receiveValue, setReceiveValue] = useState(0);
     const [isStaking, setIsStaking] = useState(1);
     const [buttonLabel, setButtonLabel] = useState('Stake');
     const [loading, setLoading] = useState(false);
@@ -128,6 +129,15 @@ function Conversor(props) {
         }  
     }
 
+    const tokenOutput = (value) => {
+
+        if (value = 0) {
+            setReceiveValue(sendValue*2)
+        } else if (value = 1) {
+            setReceiveValue(sendValue/2)
+        }
+    }
+
     const renderDividends = () => {
 
         return (
@@ -228,6 +238,7 @@ function Conversor(props) {
                         <input onChange={event => {
                             setSendValue(event.target.value);
                             updateButtonLabel();
+                            tokenOutput(isStaking);
                         }} id="sendItem" type="number"
                                placeholder="0.0"/>
                         {renderCoin(Deposit)}
@@ -236,7 +247,7 @@ function Conversor(props) {
                 <div className="input-wr">
                     <label for="receivedItem">Receive</label>
                     <div className="input-wr-inner">
-                        <input id="receivedItem" type="number" placeholder="0.0" disabled/>
+                        <input id="receivedItem" type="number" placeholder="0.0" value={receiveValue} disabled/>
                         {renderCoin(Receive)}
                     </div>
                 </div>
