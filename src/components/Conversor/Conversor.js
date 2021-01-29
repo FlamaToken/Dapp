@@ -1,24 +1,24 @@
-import React, {Component, useState} from "react";
+import React, {useState} from "react";
 
 import "./conversor.css";
 import * as Constants from "./../../constants/Constants"
 import FmaTokenLogo from './../../assets/images/fma-logo.png';
 import FssTokenLogo from './../../assets/images/fss-logo.png';
+import { CircleSpinner } from "react-spinners-kit";
 
 
 function Conversor(props) {
 
     const [allowanceFMA, setAllowanceFMA] = useState(null);
-    const [selectedAddress, setSelectedAddress] = useState();
     const [sendValue, setSendValue] = useState(0);
     const [isStaking, setIsStaking] = useState(1);
     const [buttonLabel, setButtonLabel] = useState('Stake');
-    const [firstTime, setFirstTime] = useState(true);
+    const [loading, setLoading] = useState(false);
 
 
     console.log(allowanceFMA)
     const updateButtonLabel = () => {
-        if (!props.connected) {
+        if (!props.connected || !isStaking) {
             return;
         }
         console.log('entra update connected');
@@ -35,6 +35,8 @@ function Conversor(props) {
 
             if (allowance < sendValue) {
                 setButtonLabel('Allow')
+            }else if (allowanceFMA >= sendValue) {
+                setButtonLabel('Stake')
             }
         });
     }
@@ -46,35 +48,44 @@ function Conversor(props) {
         }
 
         const web3 = props.myWeb3
-        var Flama = new web3.eth.Contract(Constants.ABIFLAMA, Constants.flamaAddress);
-
         if (allowanceFMA < sendValue) {
-
             setButtonLabel('Allow')
             var approveAmount = '999999999';
-            approveStake(web3.utils.toWei('999999999', 'ether'));
+            approveStake(web3.utils.toWei(approveAmount, 'ether'));
 
         } else if (allowanceFMA >= sendValue) {
             stakingFlama(web3.utils.toWei(sendValue, 'ether'));
         }
 
         async function stakingFlama(amount) {
-            var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
 
+            setLoading(true)
+            setButtonLabel('')
+
+            var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
             await Stake.methods.stake(amount).send({
                 from: props.selectedAddress,
                 gas: 220000
             }).on('receipt', function (receipt) {
+                setLoading(false)
+                setButtonLabel('Stake')
                 props.getBalances(web3, props.selectedAddress);
+
 
             });
         }
 
         async function approveStake(amount) {
+
+            setLoading(true)
+            setButtonLabel('')
+
             var Flama = new web3.eth.Contract(Constants.ABIFLAMA, Constants.flamaAddress);
             await Flama.methods.approve(Constants.stakeAddress, amount)
                 .send({from: props.selectedAddress, gas: 100000})
                 .on('receipt', function (receipt) {
+                    setButtonLabel('Stake')
+                    setLoading(false)
                     console.log(receipt);
                 });
         }
@@ -95,6 +106,9 @@ function Conversor(props) {
         if (!props.connected) {
             return;
         }
+        setLoading(true)
+        setButtonLabel('')
+
         const web3 = props.myWeb3
 
         unstakingFlama(web3.utils.toWei(sendValue, 'ether'));
@@ -106,13 +120,14 @@ function Conversor(props) {
                 from: props.selectedAddress,
                 gas: 220000
             }).on('receipt', function (receipt) {
+                setLoading(false)
+                setButtonLabel('Unstake')
                 props.getBalances(web3, props.selectedAddress);
-
             });
         }
-
-        
     }
+
+
     const renderWalletStatus = () => {
         if (!props.connected) {
             return <div className="wallet-status">
@@ -180,6 +195,7 @@ function Conversor(props) {
                 </div>
                 <button type="submit" className="conv-btn" onClick={() => isStaking ? stake() : unstake()}
                         disabled={sendValue < 1000 || !props.connected}>
+                    <CircleSpinner size={30} color="#FFF" loading={loading} />
                     {buttonLabel}
                 </button>
                 {renderWalletStatus(props)}
