@@ -129,6 +129,31 @@
   outline: none;
 }
 
+.claim-btn{
+  background-color: rgba(234, 76, 76, 0.6);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 0;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.claim-btn:not([disabled]) {
+  background: #ea4c4c;
+  transition: 0.35s ease-in-out;
+  cursor: pointer;
+}
+
+.claim-btn:not([disabled]):hover {
+  transform: scale(0.95);
+}
+
+.claim-btn:not([disabled]):focus {
+  outline: none;
+}
 .option-controller {
   align-items: center;
   display: flex;

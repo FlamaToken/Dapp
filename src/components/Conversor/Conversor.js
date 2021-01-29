@@ -4,6 +4,7 @@ import "./conversor.css";
 import * as Constants from "./../../constants/Constants"
 import FmaTokenLogo from './../../assets/images/fma-logo.png';
 import FssTokenLogo from './../../assets/images/fss-logo.png';
+import FlapTokenLogo from './../../assets/images/flap-logo.png';
 
 
 function Conversor(props) {
@@ -109,10 +110,54 @@ function Conversor(props) {
                 props.getBalances(web3, props.selectedAddress);
 
             });
-        }
-
-        
+        }  
     }
+
+    const renderDividends = () => {
+
+        return (
+            <div className="input-wr">
+                    <label for="dividendsItem">Pending Dividends</label>
+                    <div className="input-wr-inner">
+                        <input id="dividendsItem" type="number" placeholder="0.0" disabled/>
+                        {renderCoin(Dividends)}
+                    </div>
+                    <div>
+                    <button type="submit" className="claim-btn" onClick={() => claimDividends()}
+            disabled={/*withdrawable = 0 ||*/ !props.connected}>
+        Claim
+        </button>
+                    </div>
+            </div>
+            
+        
+        )
+        }
+    
+
+    const claimDividends = () => {
+
+        if (!props.connected) {
+            return;
+        }
+        const web3 = props.myWeb3
+
+        withdrawDividends();
+        
+        async function withdrawDividends() {
+            var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
+
+            await Stake.methods.withdrawDividendsFLAP().send({
+                from: props.selectedAddress,
+                gas: 220000
+            }).on('receipt', function (receipt) {
+                props.getBalances(web3, props.selectedAddress);
+
+            });
+        }
+    }
+
+
     const renderWalletStatus = () => {
         if (!props.connected) {
             return <div className="wallet-status">
@@ -140,10 +185,12 @@ function Conversor(props) {
         {
             fma: {name: 'FMA', logo: FmaTokenLogo},
             fss: {name: 'FSS', logo: FssTokenLogo},
+            flap: {name: 'FLAP', logo: FlapTokenLogo},
         };
 
     const Deposit = isStaking === 1 ? Tokens.fma : Tokens.fss;
     const Receive = isStaking === 0 ? Tokens.fma : Tokens.fss;
+    const Dividends = Tokens.flap;
 
     return (
         <div className="conversor-wr">
@@ -183,7 +230,8 @@ function Conversor(props) {
                     {buttonLabel}
                 </button>
                 {renderWalletStatus(props)}
-            </section>
+                {renderDividends()}
+            </section>         
 
             <small className="note-instructions">
                 1% of FMA transaction goes to Flama Staking Shares (FSS).
@@ -191,6 +239,7 @@ function Conversor(props) {
                 Stake FMA to get FSS. Unstake FSS to get FMA/FLAPs.
             </small>
         </div>
+        
     );
 }
 
