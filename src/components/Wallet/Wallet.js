@@ -42,6 +42,11 @@ export default function Wallet() {
             provider.on('end', e => console.error('WS End', e))
             provider.on('disconnect', e => console.error('WS Disconnect', e))
 
+            provider.on("accountsChanged", (accounts) => {
+                console.log(accounts);
+                console.log('account changed');
+            });
+
             provider.on('connect', (info) => {
                 console.log('connected')
             })
