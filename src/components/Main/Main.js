@@ -1,7 +1,7 @@
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Conversor from './../Conversor/Conversor'
 import Bridge from './../Bridge/index'
-import React, {useState} from "react";
+import React from "react";
 
 function Main(props) {
 
