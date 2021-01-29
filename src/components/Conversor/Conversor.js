@@ -90,6 +90,29 @@ function Conversor(props) {
         // }
     }
 
+    const unstake = () => {
+
+        if (!props.connected) {
+            return;
+        }
+        const web3 = props.myWeb3
+
+        unstakingFlama(web3.utils.toWei(sendValue, 'ether'));
+        
+        async function unstakingFlama(amount) {
+            var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
+
+            await Stake.methods.unstake(amount).send({
+                from: props.selectedAddress,
+                gas: 220000
+            }).on('receipt', function (receipt) {
+                props.getBalances(web3, props.selectedAddress);
+
+            });
+        }
+
+        
+    }
     const renderWalletStatus = () => {
         if (!props.connected) {
             return <div className="wallet-status">
@@ -155,7 +178,7 @@ function Conversor(props) {
                         {renderCoin(Receive)}
                     </div>
                 </div>
-                <button type="submit" className="conv-btn" onClick={() => isStaking ? stake() : stake()}
+                <button type="submit" className="conv-btn" onClick={() => isStaking ? stake() : unstake()}
                         disabled={sendValue < 1000 || !props.connected}>
                     {buttonLabel}
                 </button>
