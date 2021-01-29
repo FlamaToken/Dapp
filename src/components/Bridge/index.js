@@ -13,7 +13,7 @@ function Bridge(props) {
             </div>
         } else {
           return  <div className="wallet-status">
-                <div className="status"></div>
+                <div className="status-connected"></div>
                 <p>Wallet Connected</p>
                 
             </div>

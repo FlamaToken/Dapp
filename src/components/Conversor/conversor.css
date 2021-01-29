@@ -177,6 +177,15 @@
   width: 10px;
 }
 
+.status-connected {
+  background: #00ff00;
+  border-radius: 50%;
+  height: 10px;
+  margin-right: 8px;
+  position: relative;
+  width: 10px;
+}
+
 @keyframes status {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -192,6 +201,20 @@
 .status:after {
   animation: status 2s ease-in-out infinite forwards;
   background: #ec3f3f;
+  border-radius: 50%;
+  content: "";
+  opacity: 0.8;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+}
+
+.status-connected:after {
+  animation: status 2s ease-in-out infinite forwards;
+  background: #00ff00;
   border-radius: 50%;
   content: "";
   opacity: 0.8;

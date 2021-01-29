@@ -20,7 +20,7 @@ function Conversor(props) {
         } else {
             console.log(props.myWeb3)
             return <div className="wallet-status">
-                <div className="status"></div>
+                <div className="status-connected"></div>
                 <p>Wallet Connected</p>
 
             </div>
@@ -54,7 +54,7 @@ function Conversor(props) {
 
             await Stake.methods.stake(amount).send({
                 from: web3.givenProvider.selectedAddress,
-                gas: 150000
+                gas: 220000
             }).on('receipt', function (receipt) {
                 console.log(receipt);
             });
