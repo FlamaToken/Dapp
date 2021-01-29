@@ -33,7 +33,7 @@ export default function Wallet() {
             }
 
             web3Modal = new Web3Modal({
-                cacheProvider: false,
+                cacheProvider: true,
                 disableInjectedProvider: false,
                 providerOptions
             });

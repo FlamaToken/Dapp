@@ -83,6 +83,7 @@
   font-size: 24px;
   font-weight: 600;
   width: 80%;
+  background: #FFF;
 }
 
 .input-wr input::-webkit-outer-spin-button,
@@ -103,24 +104,28 @@
   outline: none;
 }
 
-.conv-btn {
-  background: #ea4c4c;
+.conv-btn{
+  background-color: rgba(234, 76, 76, 0.6);
   border: none;
   border-radius: 12px;
   color: #fff;
-  cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   padding: 16px 0;
-  transition: 0.35s ease-in-out;
   width: 100%;
 }
 
-.conv-btn:hover {
+.conv-btn:not([disabled]) {
+  background: #ea4c4c;
+  transition: 0.35s ease-in-out;
+  cursor: pointer;
+}
+
+.conv-btn:not([disabled]):hover {
   transform: scale(0.95);
 }
 
-.conv-btn:focus {
+.conv-btn:not([disabled]):focus {
   outline: none;
 }
 
