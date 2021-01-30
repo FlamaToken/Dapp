@@ -5,7 +5,7 @@ import * as Constants from "./../../constants/Constants"
 import FmaTokenLogo from './../../assets/images/fma-logo.png';
 import FssTokenLogo from './../../assets/images/fss-logo.png';
 import FlapTokenLogo from './../../assets/images/flap-logo.png';
-import { CircleSpinner } from "react-spinners-kit";
+import {CircleSpinner} from "react-spinners-kit";
 
 
 function Conversor(props) {
@@ -22,30 +22,28 @@ function Conversor(props) {
     const supply_fss = () => {
 
         const web3 = props.myWeb3
+        var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
 
-             var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
-        
         Stake.methods.totalSupply().call().then(r => {
             //const fssSupply = Number(r);
-            setTotalSupplyFSS(r);        
+            setTotalSupplyFSS(r);
         });
     }
-         
+
     const fma_staked = () => {
 
         const web3 = props.myWeb3
         var Flama = new web3.eth.Contract(Constants.ABIFLAMA, Constants.flamaAddress);
-            
+
         Flama.methods.balanceOf(Constants.stakeAddress).call().then(r => {
             console.log(r);
             //const stakedFMA = Number(r);
             //console.log(stakedFMA);
 
-            setFMAinStaking(r);            
+            setFMAinStaking(r);
         });
     }
-    
-    
+
 
     console.log(allowanceFMA)
     const updateButtonLabel = () => {
@@ -66,12 +64,12 @@ function Conversor(props) {
 
             if (allowance < sendValue) {
                 setButtonLabel('Allow')
-            }else if (allowanceFMA >= sendValue) {
+            } else if (allowanceFMA >= sendValue) {
                 setButtonLabel('Stake')
             }
         });
     }
-    
+
     const stake = () => {
 
         if (!props.connected) {
@@ -133,7 +131,7 @@ function Conversor(props) {
         const web3 = props.myWeb3
 
         unstakingFlama(web3.utils.toWei(sendValue, 'ether'));
-        
+
         async function unstakingFlama(amount) {
             var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
 
@@ -145,7 +143,7 @@ function Conversor(props) {
                 setButtonLabel('Unstake')
                 props.getBalances(web3, props.selectedAddress);
             });
-        }  
+        }
     }
 
     const selectMaxAmount = () => {
@@ -160,44 +158,44 @@ function Conversor(props) {
             }
             console.log(props.flm)
             console.log(props.fss)
-
-        
-    }}
+        }
+    }
 
     const tokenOutput = (input) => {
         if (props.connected) {
-        supply_fss();
-        fma_staked();
-        const web3 = props.myWeb3
-        if (isStaking === 0) {
-            setReceiveValue(input*FMAinStaking/totalSupplyFSS)
-        } else if (isStaking === 1) {
-            setReceiveValue((input*totalSupplyFSS/FMAinStaking)*0.97)
+            supply_fss();
+            fma_staked();
+            const web3 = props.myWeb3
+            if (isStaking === 0) {
+                setReceiveValue(input * FMAinStaking / totalSupplyFSS)
+            } else if (isStaking === 1) {
+                setReceiveValue((input * totalSupplyFSS / FMAinStaking) * 0.97)
+            }
         }
-    }}
+    }
 
     const renderDividends = () => {
 
         return (
             <div className="conversor-wr">
-            <div className="input-wr">
+                <div className="input-wr">
                     <label for="dividendsItem">Pending Dividends</label>
                     <div className="input-wr-inner">
                         <input id="dividendsItem" type="number" placeholder="0.0" disabled/>
                         {renderCoin(Dividends)}
                     </div>
-                    
+
+                </div>
+                <button type="submit" className="claim-btn" onClick={() => claimDividends()}
+                        disabled={!props.connected}>
+                    Claim
+                </button>
             </div>
-            <button type="submit" className="claim-btn" onClick={() => claimDividends()}
-            disabled={!props.connected}>
-        Claim
-        </button>
-            </div>
-            
-        
+
+
         )
-        }
-    
+    }
+
 
     const claimDividends = () => {
 
@@ -207,7 +205,7 @@ function Conversor(props) {
         const web3 = props.myWeb3
 
         withdrawDividends();
-        
+
         async function withdrawDividends() {
             var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
 
@@ -246,11 +244,11 @@ function Conversor(props) {
         </div>
     }
     const Tokens =
-        {
-            fma: {name: 'FMA', logo: FmaTokenLogo},
-            fss: {name: 'FSS', logo: FssTokenLogo},
-            flap: {name: 'FLAP', logo: FlapTokenLogo},
-        };
+    {
+        fma: {name: 'FMA', logo: FmaTokenLogo},
+        fss: {name: 'FSS', logo: FssTokenLogo},
+        flap: {name: 'FLAP', logo: FlapTokenLogo},
+    };
 
     const Deposit = isStaking === 1 ? Tokens.fma : Tokens.fss;
     const Receive = isStaking === 0 ? Tokens.fma : Tokens.fss;
@@ -282,10 +280,11 @@ function Conversor(props) {
                             tokenOutput(event.target.value);
                         }} id="sendItem" type="number"
                                placeholder="0.0" value={sendValue}/>
+
+                        {props.connected ? <button class="max-btn" onClick={() => selectMaxAmount()}>MAX</button>:''}
                         {renderCoin(Deposit)}
                     </div>
                 </div>
-                <button class="max-btn" onClick={() => selectMaxAmount()}>MAX</button>
                 <div className="input-wr">
                     <label for="receivedItem">Receive</label>
                     <div className="input-wr-inner">
@@ -295,12 +294,12 @@ function Conversor(props) {
                 </div>
                 <button type="submit" className="conv-btn" onClick={() => isStaking ? stake() : unstake()}
                         disabled={sendValue < 1000 || !props.connected}>
-                    <CircleSpinner size={30} color="#FFF" loading={loading} />
+                    <CircleSpinner size={30} color="#FFF" loading={loading}/>
                     {buttonLabel}
                 </button>
                 {renderDividends()}
                 {renderWalletStatus(props)}
-            </section>         
+            </section>
 
             <small className="note-instructions">
                 1% of FMA transaction goes to Flama Staking Shares (FSS).
@@ -308,7 +307,7 @@ function Conversor(props) {
                 Stake FMA to get FSS. Unstake FSS to get FMA/FLAPs.
             </small>
         </div>
-        
+
     );
 }
 
