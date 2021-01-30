@@ -44,15 +44,7 @@ function Conversor(props) {
             setFMAinStaking(r);            
         });
     }
-    
-    
-
-    console.log(allowanceFMA)
-    const updateButtonLabel = () => {
-        if (!props.connected || !isStaking) {
-            return;
-        }
-        console.log('entra update connected');
+    const allowance_fma = () => {
 
         const web3 = props.myWeb3
 
@@ -61,15 +53,24 @@ function Conversor(props) {
         Flama.methods.allowance(props.selectedAddress, Constants.stakeAddress).call().then(r => {
             const allowance = Number(r);
             setAllowanceFMA(allowance);
+        });
+}
+    
+    
 
-            console.log(allowance)
+    const updateButtonLabel = () => {
+        if (!props.connected || !isStaking) {
+            return;
+        }
+        console.log('entra update connected');
+        allowance_fma();
 
-            if (allowance < sendValue) {
+            if (allowanceFMA < sendValue) {
                 setButtonLabel('Allow')
             }else if (allowanceFMA >= sendValue) {
                 setButtonLabel('Stake')
             }
-        });
+
     }
     
     const stake = () => {
@@ -78,6 +79,7 @@ function Conversor(props) {
             return;
         }
 
+        allowance_fma();
         const web3 = props.myWeb3
         if (allowanceFMA < sendValue) {
             setButtonLabel('Allow')
