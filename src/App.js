@@ -66,7 +66,7 @@ function FlamaApp() {
     return (
         <div className="flama">
             <Header eth={eth} flm={flm} flap={flap} fss={fss} connectWallet={connectWallet} connected={connected}/>
-            <Main  connectWallet={connectWallet} getBalances={getBalances} connected={connected} myWeb3={myWeb3} selectedAddress={selectedAddress}/>
+            <Main flm={flm} flap={flap} fss={fss} connectWallet={connectWallet} getBalances={getBalances} connected={connected} myWeb3={myWeb3} selectedAddress={selectedAddress}/>
             <Footer/>
         </div>
     );

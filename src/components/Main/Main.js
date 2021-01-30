@@ -7,7 +7,7 @@ function Main(props) {
 
     return(
         <Switch>
-            <Route exact path='/' render={(propsChild) => <Conversor connectWallet={props.connectWallet} getBalances={props.getBalances} connected={props.connected} myWeb3={props.myWeb3} selectedAddress={props.selectedAddress}/>}/>
+            <Route exact path='/' render={(propsChild) => <Conversor flm={props.flm} flap={props.flap} fss={props.fss} connectWallet={props.connectWallet} getBalances={props.getBalances} connected={props.connected} myWeb3={props.myWeb3} selectedAddress={props.selectedAddress}/>}/>
             <Route exact path='/bridge' component={Bridge}></Route>
         </Switch>
     );

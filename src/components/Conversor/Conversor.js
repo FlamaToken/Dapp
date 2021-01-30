@@ -11,12 +11,41 @@ import { CircleSpinner } from "react-spinners-kit";
 function Conversor(props) {
 
     const [allowanceFMA, setAllowanceFMA] = useState(null);
+    const [FMAinStaking, setFMAinStaking] = useState(0);
+    const [totalSupplyFSS, setTotalSupplyFSS] = useState(0);
     const [sendValue, setSendValue] = useState(0);
     const [receiveValue, setReceiveValue] = useState(0);
     const [isStaking, setIsStaking] = useState(1);
     const [buttonLabel, setButtonLabel] = useState('Stake');
     const [loading, setLoading] = useState(false);
 
+    const supply_fss = () => {
+
+        const web3 = props.myWeb3
+
+             var Stake = new web3.eth.Contract(Constants.ABISTAKING, Constants.stakeAddress);
+        
+        Stake.methods.totalSupply().call().then(r => {
+            //const fssSupply = Number(r);
+            setTotalSupplyFSS(r);        
+        });
+    }
+         
+    const fma_staked = () => {
+
+        const web3 = props.myWeb3
+        var Flama = new web3.eth.Contract(Constants.ABIFLAMA, Constants.flamaAddress);
+            
+        Flama.methods.balanceOf(Constants.stakeAddress).call().then(r => {
+            console.log(r);
+            //const stakedFMA = Number(r);
+            //console.log(stakedFMA);
+
+            setFMAinStaking(r);            
+        });
+    }
+    
+    
 
     console.log(allowanceFMA)
     const updateButtonLabel = () => {
@@ -91,16 +120,6 @@ function Conversor(props) {
                     console.log(receipt);
                 });
         }
-
-        // async function getTotalStakedTokens() {
-        //     var Stake = new web3.eth.Contract(ABISTAKING, stakeAddress);
-        //
-        //     await Stake.methods.totalSupply().call().then(r => {
-        //         totalSupplyFSS = convert(r, "wei", "ether");
-        //         document.getElementById('supply_FSS').innerHTML = Number((totalSupplyFSS).toFixed(3));
-        //
-        //     });
-        // }
     }
 
     const unstake = () => {
@@ -129,30 +148,50 @@ function Conversor(props) {
         }  
     }
 
-    const tokenOutput = (value) => {
+    const selectMaxAmount = () => {
+        if (props.connected) {
+            const web3 = props.myWeb3
+            if (isStaking === 1) {
+                setSendValue(props.flm);
+                tokenOutput(props.flm);
+            } else if (isStaking === 0) {
+                setSendValue(props.fss);
+                tokenOutput(props.fss);
+            }
+            console.log(props.flm)
+            console.log(props.fss)
 
-        if (value = 0) {
-            setReceiveValue(sendValue*2)
-        } else if (value = 1) {
-            setReceiveValue(sendValue/2)
+        
+    }}
+
+    const tokenOutput = (input) => {
+        if (props.connected) {
+        supply_fss();
+        fma_staked();
+        const web3 = props.myWeb3
+        if (isStaking === 0) {
+            setReceiveValue(input*FMAinStaking/totalSupplyFSS)
+        } else if (isStaking === 1) {
+            setReceiveValue((input*totalSupplyFSS/FMAinStaking)*0.97)
         }
-    }
+    }}
 
     const renderDividends = () => {
 
         return (
+            <div className="conversor-wr">
             <div className="input-wr">
                     <label for="dividendsItem">Pending Dividends</label>
                     <div className="input-wr-inner">
                         <input id="dividendsItem" type="number" placeholder="0.0" disabled/>
                         {renderCoin(Dividends)}
                     </div>
-                    <div>
-                    <button type="submit" className="claim-btn" onClick={() => claimDividends()}
-            disabled={/*withdrawable = 0 ||*/ !props.connected}>
+                    
+            </div>
+            <button type="submit" className="claim-btn" onClick={() => claimDividends()}
+            disabled={!props.connected}>
         Claim
         </button>
-                    </div>
             </div>
             
         
@@ -224,12 +263,14 @@ function Conversor(props) {
                     <a href="#" className={isStaking ? 'active' : ''} onClick={() => {
                         setIsStaking(1);
                         setButtonLabel('Stake');
+                        tokenOutput(sendValue);
                     }}>
                         Stake
                     </a>
                     <a href="#" className={!isStaking ? 'active' : ''} onClick={() => {
                         setIsStaking(0);
                         setButtonLabel('UnStake');
+                        tokenOutput(sendValue);
                     }}>Unstake</a>
                 </div>
                 <div className="input-wr">
@@ -238,12 +279,13 @@ function Conversor(props) {
                         <input onChange={event => {
                             setSendValue(event.target.value);
                             updateButtonLabel();
-                            tokenOutput(isStaking);
+                            tokenOutput(event.target.value);
                         }} id="sendItem" type="number"
-                               placeholder="0.0"/>
+                               placeholder="0.0" value={sendValue}/>
                         {renderCoin(Deposit)}
                     </div>
                 </div>
+                <button class="max-btn" onClick={() => selectMaxAmount()}>MAX</button>
                 <div className="input-wr">
                     <label for="receivedItem">Receive</label>
                     <div className="input-wr-inner">
@@ -256,8 +298,8 @@ function Conversor(props) {
                     <CircleSpinner size={30} color="#FFF" loading={loading} />
                     {buttonLabel}
                 </button>
-                {renderWalletStatus(props)}
                 {renderDividends()}
+                {renderWalletStatus(props)}
             </section>         
 
             <small className="note-instructions">

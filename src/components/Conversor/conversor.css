@@ -104,6 +104,29 @@
   outline: none;
 }
 
+
+.max-btn {
+  text-align: center;
+  background-color: #ec3f3f;
+  border: 1px solid #ec3f3f;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 0;
+  width: 80px;
+  cursor: pointer;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  margin: 0 auto;
+}
+
+.max-btn:hover {
+  border: 1px solid #ec3f3f;
+}
+
 .conv-btn{
   background-color: rgba(234, 76, 76, 0.6);
   border: none;
